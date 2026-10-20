@@ -1,0 +1,60 @@
+/* CONTEXT: Tidepool Poke is a made-up fast-casual food company. The palette
+   (seafoam, deep teal, mango, chilli) comes from the food itself, so the page
+   feels fresh and the ingredient colours are the loudest thing on screen. */
+:root{
+  --bg:#e6f2ee; --ink:#0d2b2e; --panel:#f7fbfa; --line:#9cc3ba;
+  --mango:#f2a900; --chilli:#d9362b; --ok:#1c7a4f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font:17px/1.5 "Gill Sans","Trebuchet MS",sans-serif}
+header{padding:28px 24px 8px;max-width:980px;margin:auto}
+header p{margin:0;font-weight:700;letter-spacing:.02em}
+h1{font:700 clamp(2rem,5vw,3.2rem)/1.05 Rockwell,Georgia,serif;margin:6px 0 8px}
+.lede{max-width:46ch;margin:0}
+main{max-width:980px;margin:auto;padding:16px 24px 48px;
+  display:grid;grid-template-columns:1fr 1fr;gap:28px}
+@media(max-width:720px){main{grid-template-columns:1fr}}
+
+/* Tray of draggable ingredients */
+.tray{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;align-content:start}
+.chip{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--panel);
+  border:2px solid var(--line);border-radius:14px;cursor:grab;user-select:none;
+  touch-action:none; /* stops the browser scrolling while a finger drags */}
+.chip:hover{border-color:var(--ink)}
+.chip:focus-visible{outline:3px solid var(--mango);outline-offset:2px}
+.chip.used{opacity:.45}
+.dot{flex:none;width:34px;height:34px;border-radius:50%;border:2px solid var(--ink)}
+.chip b{display:block;line-height:1.15}
+.chip small{opacity:.75}
+
+/* Bowl drop zone */
+.stage{display:flex;flex-direction:column;align-items:center;gap:14px}
+.bowl{position:relative;width:min(340px,82vw);aspect-ratio:1;border-radius:50%;
+  background:var(--panel);border:6px solid var(--ink);
+  box-shadow:inset 0 -14px 0 rgba(13,43,46,.08);
+  transition:transform .15s,border-color .15s,background .15s}
+.bowl.ready{border-color:var(--ok);background:#fff;transform:scale(1.04)}
+.bowl.full{animation:shake .3s}
+.hint{position:absolute;inset:0;display:grid;place-items:center;text-align:center;
+  padding:22%;opacity:.6;pointer-events:none}
+.bowl .item{position:absolute;width:30%;aspect-ratio:1;border-radius:50%;
+  border:2px solid var(--ink);display:grid;place-items:center;
+  font-size:.72rem;font-weight:700;text-align:center;line-height:1;cursor:pointer;
+  transform:translate(-50%,-50%);animation:pop .25s}
+.bowl .item:focus-visible{outline:3px solid var(--mango)}
+.ghost{position:fixed;z-index:9;pointer-events:none;width:46px;height:46px;border-radius:50%;
+  border:3px solid var(--ink);transform:translate(-50%,-50%) scale(1.15);
+  box-shadow:0 10px 18px rgba(13,43,46,.3)}
+.ghost.back{transition:left .22s,top .22s,opacity .22s;opacity:0}
+.total{display:flex;gap:18px;align-items:baseline;font-size:1.1rem}
+.total strong{font:700 1.7rem Rockwell,Georgia,serif}
+.btns{display:flex;gap:10px}
+button{font:inherit;font-weight:700;padding:10px 18px;border-radius:999px;
+  border:2px solid var(--ink);background:var(--mango);color:var(--ink);cursor:pointer}
+button.quiet{background:transparent}
+button:focus-visible{outline:3px solid var(--ink);outline-offset:2px}
+button:disabled{opacity:.4;cursor:not-allowed}
+@keyframes pop{from{transform:translate(-50%,-50%) scale(.2)}}
+@keyframes shake{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}

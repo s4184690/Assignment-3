@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tidepool Poke - Build your bowl</title>
+<!-- Course reset.css goes here (the only external file allowed):
+<link rel="stylesheet" href="reset.css"> -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <p>Tidepool Poke</p>
+  <h1>Build your bowl</h1>
+  <p class="lede">Drag up to five ingredients into the bowl. Tap an ingredient in the bowl to take it out.</p>
+</header>
+
+<main>
+  <section class="tray" id="tray" aria-label="Ingredients"></section>
+  <section class="stage">
+    <div class="bowl" id="bowl" role="group" aria-label="Your bowl">
+      <div class="hint" id="hint">Drop ingredients here</div>
+    </div>
+    <div class="total" aria-live="polite">
+      <span><strong id="price">$0.00</strong></span>
+      <span id="kcal">0 kcal</span>
+      <span id="count">0 of 5</span>
+    </div>
+    <div class="btns">
+      <button id="order" disabled>Add bowl to order</button>
+      <button id="reset" class="quiet">Empty bowl</button>
+    </div>
+    <p id="status" role="status" style="min-height:1.5em;margin:0"></p>
+  </section>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
